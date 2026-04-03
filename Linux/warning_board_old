@@ -1,3 +1,10 @@
 ssh-keygen -R 192.168.7.2
 xoa id cu neu co
 sau do dung ssh debian@192.168.7.2 (hoac root@...)
+
+
+Gõ lệnh: sudo shutdown -h now (Thêm chữ -h now để nó tắt ngay lập tức, khỏi phải chờ 1 phút).
+
+Đợi đèn LED: Quan sát 4 cái đèn LED nhỏ trên board. Khi nào thấy đèn tắt hết (chỉ còn đèn nguồn sáng đứng yên) thì nghĩa là hệ điều hành đã tắt xong.
+
+Rút dây: Lúc này Sang mới rút dây USB ra khỏi Laptop.
