@@ -16,3 +16,21 @@ USR1: Thường nháy khi có hoạt động truy cập vào thẻ nhớ microSD
 USR2: Thường báo hiệu hoạt động của CPU.
 
 USR3: Thường báo hiệu hoạt động của bộ nhớ ngoài.
+
+uname -r phiên bản của Kernel (nhân) Linux
+
+cat /etc/dogtag
+Trong hình bạn chụp lúc trước, dogtag hiện ra:
+BeagleBoard.org Debian Bullseye IoT Image 2023-09-02
+
+Dân nhúng nhìn vào đây sẽ biết ngay 3 thông tin "sống còn":
+
+BeagleBoard.org: Đơn vị build bản này (hàng chính chủ).
+
+Debian Bullseye IoT: Đây là bản IoT, tức là bản đã được tối ưu cực nhẹ, lược bỏ giao diện đồ họa (GUI) để dành toàn bộ sức mạnh CPU cho việc điều khiển phần cứng.
+
+2023-09-02: Ngày bản image này được tạo ra. Bản của bạn rất mới, hỗ trợ tốt các thư viện hiện đại.
+
+cat /etc/debian_version
+
+cat /proc/device-tree/model loại board
