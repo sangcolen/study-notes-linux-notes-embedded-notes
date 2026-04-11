@@ -8,3 +8,11 @@ Gõ lệnh: sudo shutdown -h now (Thêm chữ -h now để nó tắt ngay lập 
 Đợi đèn LED: Quan sát 4 cái đèn LED nhỏ trên board. Khi nào thấy đèn tắt hết (chỉ còn đèn nguồn sáng đứng yên) thì nghĩa là hệ điều hành đã tắt xong.
 
 Rút dây: Lúc này Sang mới rút dây USB ra khỏi Laptop.
+
+USR0 (Đèn gần cổng LAN nhất): Thường nháy theo kiểu Heartbeat (nháy kép thình thịch). Nếu thấy nó nháy kiểu này nghĩa là nhân Linux (Kernel) đang sống và chạy tốt.
+
+USR1: Thường nháy khi có hoạt động truy cập vào thẻ nhớ microSD hoặc bộ nhớ eMMC.
+
+USR2: Thường báo hiệu hoạt động của CPU.
+
+USR3: Thường báo hiệu hoạt động của bộ nhớ ngoài.
