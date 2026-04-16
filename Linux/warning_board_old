@@ -34,3 +34,14 @@ Debian Bullseye IoT: Đây là bản IoT, tức là bản đã được tối ư
 cat /etc/debian_version
 
 cat /proc/device-tree/model loại board
+
+htop xem cpu dang chay
+
+df -h xem dung luong the SD
+
+ls /dev
+
+# Xem xung nhịp hiện tại (đơn vị Hz)
+cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq
+
+Nếu nó hiện 1000000 tức là nó đang chạy max 1GHz đó
