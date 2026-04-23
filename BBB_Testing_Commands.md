@@ -476,4 +476,48 @@
 
   239  sudo shutdown -h now
 
-lúc mới mua board thì có lịch sử này giải thích hết đã test gì đi
+1. Cấu hình hệ thống và tối ưu Boot (Dòng 1 - 10)
+Người dùng đã kiểm tra xem dịch vụ nào đang làm board khởi động chậm bằng lệnh systemd-analyze blame. Sau đó, họ can thiệp vào các file startup và cấu hình mạng (networking.service) để tối ưu hóa quá trình bật máy. Họ cũng kích hoạt lightdm (giao diện đồ họa).
+
+2. Quản lý tiến trình và chạy thử dự án "Press_Rev" (Dòng 11 - 55)
+Đây là phần quan trọng nhất. Board này từng chạy một dự án tên là Press_Rev.
+
+Họ liên tục dùng lệnh ps -ef để kiểm tra các tiến trình đang chạy ngầm.
+
+Họ chạy file thực thi dự án bằng lệnh: ./Press_Rev/build/bin/runner.
+
+Có dấu hiệu họ thử tạo một script khởi động tự động (Autorun) trong /etc/rc5.d/S10runner để board vừa bật lên là tự chạy chương trình này luôn.
+
+3. Làm việc với thiết bị ngoại vi (USB & Lưu trữ) (Dòng 100 - 117)
+Người này đã test khả năng nhận diện ổ cứng ngoài/USB:
+
+Tạo thư mục /media/usb.
+
+Dùng lệnh mount để gắn ổ đĩa USB (/dev/sda1) vào hệ thống.
+
+Sau đó copy toàn bộ thư mục dự án Press_Rev vào USB để sao lưu (backup).
+
+4. Lập trình và Biên dịch (C/C++) (Dòng 118 - 176)
+Board này đã được dùng như một môi trường lập trình trực tiếp:
+
+Họ dùng nano để sửa code trong file test.cpp và test.c.
+
+Họ thực hiện lệnh make ngay trên board. Đây là bước biên dịch code từ file chữ sang file chạy (runner).
+
+Có đoạn họ lỡ tay gõ sai rất nhiều (dòng 22-32: clera, clar, clare...) cho thấy người này đôi khi cũng "cuống" hoặc gõ nhanh quá tay.
+
+5. Cấu hình mạng và địa chỉ IP (Dòng 184 - 206)
+Họ đã can thiệp sâu vào cấu hình mạng:
+
+Sửa file /etc/network/interfaces để đặt IP tĩnh.
+
+Đặc biệt ở dòng 204, họ dùng lệnh sed để ép địa chỉ IP thành 192.168.0.193. Nếu bạn cắm mạng vào mà không thấy IP cũ, có thể là do dòng này.
+
+6. Test phần cứng: UART và Giao tiếp máy tính (Dòng 207 - 218)
+Đây là phần chứng tỏ họ có test giao tiếp phần cứng:
+
+ls -l /dev/ttyO*: Kiểm tra các cổng nối tiếp (UART).
+
+dmesg | grep tty: Xem log hệ thống để xem các cổng UART có hoạt động không.
+
+Sửa file /boot/uEnv.txt: Đây là file cấu hình boot quan trọng của BeagleBone để bật/tắt các chân GPIO hoặc các tính năng phần cứng (như UART4).
