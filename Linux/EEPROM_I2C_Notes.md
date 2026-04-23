@@ -1,3 +1,34 @@
+  240  top
+  241  free -h
+  242  lsblk
+  243  cat /sys/dogtag
+  244  history
+  245  cat /etc/debian_version
+  246  cat /etc/dogtag
+  247  cat /sys/class/thermal/thermal_zone0/temp
+  248  sudo poweroff
+  249  i2cdetect -l
+  250  sudo i2cdetect -y -r 2
+  251  cat /sys/bus/i2c/devices/2-0054/eeprom
+  252  sudo cat /sys/bus/i2c/devices/2-0054/eeprom
+  253  sudo -i
+  254  sudo cat /sys/bus/i2c/devices/2-0054/eeprom
+  255  top
+  256  free -h
+  257  sudo i2cdump -y 2 0x54
+  258  sudo cat /sys/class/i2c-adapter/i2c-2/2-0054/eeprom | hexdump -C
+  259  echo 2-0054 | sudo tee /sys/bus/i2c/drivers/at24/unbind
+  260  cat /etc/dogtag
+  261  cat /etc/debian_version
+  262  sudo i2cdump -y 2 0x54
+  263  sudo i2cdump -y -f 2 0x54 w
+  264  sudo i2cdump -y -f 2 0x54 c
+  265  echo 24c32 0x54 | sudo tee /sys/bus/i2c/devices/i2c-2/new_device
+  266  cat /sys/bus/i2c/devices/2-0054/eeprom | hexdump -C
+  267  cat /etc/debian_version
+  268  cat /etc/dogtag
+  269  sudo poweroff
+
 Bạn chạy lệnh này để bắt hệ thống thôi không quản lý con chip đó bằng driver mặc định nữa:
 
 echo 2-0054 | sudo tee /sys/bus/i2c/drivers/at24/unbind
