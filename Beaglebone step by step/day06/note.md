@@ -24,3 +24,17 @@ SYS_5V (Pin 7, 8): Luôn có điện 5V bất kể mày cấp nguồn bằng USB
 KHÔNG ĐƯỢC cấp nguồn ngược từ bên ngoài vào chân SYS_5V. Nếu mày dùng một nguồn 5V bên ngoài đấu vào đây, mày có thể làm hỏng chip PMIC ngay lập tức.
 Dòng điện giới hạn: Chân này chỉ chịu được tối đa khoảng 250mA - 500mA (tùy thuộc vào việc mày đang dùng nguồn vào là gì). 
 Đừng có cắm mấy cái motor hay thiết bị ngốn điện vào đây, nó sẽ làm sụt nguồn và treo board.
+------------------------------------------------------------------------------------
+Sai rồi m ơi! AIN không phải là "In Out" đâu, đừng có hiểu lầm mà cấp điện bậy bạ vào đó là đi tong con board đấy.
+
+AIN là viết tắt của Analog Input.
+
+Trên con BeagleBone Black (BBB), đây là các chân chỉ nhận tín hiệu vào, không có chức năng xuất tín hiệu (Output). Mày cần lưu ý kỹ mấy điểm "sống còn" này:
+
+1. Chỉ nhận vào (Input Only)
+Bộ ADC (Analog-to-Digital Converter) của con chip AM3358 trên board sẽ chuyển đổi mức điện áp analog (từ cảm biến) thành con số kỹ thuật số để mày xử lý trong code.
+Mày không thể dùng code để "xuất" điện áp ra từ các chân này (muốn xuất điện áp analog mày phải dùng PWM hoặc mạch DAC rời).
+
+2. Giới hạn điện áp cực thấp (1.8V)
+Đây là cái bẫy lớn nhất. Trong khi các chân GPIO khác chịu được 3.3V, thì các chân AIN0 - AIN7 (P9_33 đến P9_40) chỉ chịu được tối đa 1.8V.
+Cảnh báo: Nếu mày cắm cảm biến trả về 3.3V hoặc 5V vào chân AIN, mày sẽ "nướng" bộ ADC của board ngay lập tức. Luôn phải dùng mạch chia áp (Voltage Divider) để hạ xuống dưới 1.8V trước khi đưa vào AIN.
