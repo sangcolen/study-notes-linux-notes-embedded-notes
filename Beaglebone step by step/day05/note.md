@@ -3,4 +3,4 @@ lsblk
 sudo mount /dev/mmcblk1p1 /boot/uboot de ket noi voi thu muc
 sudo nano /boot/uboot/uEnv.txt
 
-lsb-release -a
+lsb_release -a
