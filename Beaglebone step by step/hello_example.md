@@ -59,3 +59,34 @@ all:
 clean:
 	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
 ----------------------------------------------------------------------
+kiem tra
+drwx------ 3 debian debian 4096 Apr  6 13:43 .gnupg
+-rw-r--r-- 1 debian debian  525 Apr  6 16:58 hello.c
+-rw-r--r-- 1 debian debian  155 Apr  6 17:02 MakeFile.c
+-rw-r--r-- 1 debian debian  807 Apr 18  2019 .profile
+-rw------- 1 debian debian 1185 Apr  6 17:02 .viminfo
+-rw-r--r-- 1 debian debian   64 Apr  6 13:33 .xsessionrc
+debian@beaglebone:~$ pwd
+/home/debian
+debian@beaglebone:~$ mv MakeFile.c Makefile
+debian@beaglebone:~$ ls-la
+-bash: ls-la: command not found
+debian@beaglebone:~$ ls -la
+total 52
+drwxr-xr-x 5 debian debian 4096 Apr  6 17:05 .
+drwxr-xr-x 3 root   root   4096 Apr  6 13:33 ..
+-rw------- 1 debian debian  265 Apr  6 16:51 .bash_history
+-rw-r--r-- 1 debian debian  220 Apr 18  2019 .bash_logout
+-rw-r--r-- 1 debian debian 3526 Apr 18  2019 .bashrc
+drwxr-xr-x 2 debian debian 4096 Apr  6 13:33 bin
+lrwxrwxrwx 1 debian debian   16 Apr  6 17:03 .c9 -> /opt/cloud9/.c9/
+drwx------ 4 debian debian 4096 Apr  6 14:05 .config
+-rw-r--r-- 1 debian debian    0 Apr  6 13:34 .gitconfig
+drwx------ 3 debian debian 4096 Apr  6 13:43 .gnupg
+-rw-r--r-- 1 debian debian  525 Apr  6 16:58 hello.c
+-rw-r--r-- 1 debian debian  155 Apr  6 17:02 Makefile
+-rw-r--r-- 1 debian debian  807 Apr 18  2019 .profile
+-rw------- 1 debian debian 1185 Apr  6 17:02 .viminfo
+-rw-r--r-- 1 debian debian   64 Apr  6 13:33 .xsessionrc
+debian@beaglebone:~$
+
