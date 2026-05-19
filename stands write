@@ -10,6 +10,7 @@
 • SPI (Serial Peripheral Interface): Chuẩn giao tiếp nối tiếp đồng bộ tốc độ cao hơn I2C, dùng 4 dây. Cũng là chuẩn không tự phát hiện thiết bị.
 • UART (Universal Asynchronous Receiver-Transmitter): Bộ truyền nhận dữ liệu nối tiếp bất đồng bộ (chân TX/RX quen thuộc dùng để debug hoặc truyền dữ liệu khoảng cách gần).
 • GPIO (General-Purpose Input/Output): Các chân giao tiếp đa năng trên vi điều khiển/máy tính nhúng. Bạn thích cấu hình nó làm chân xuất tín hiệu (Output) hay đọc tín hiệu (Input) đều được.
+• SDIO (Secure Digital Input/Output) là một công nghệ mở rộng dựa trên chuẩn thẻ nhớ SD, cho phép các thiết bị không chỉ lưu trữ dữ liệu mà còn tích hợp thêm các chức năng ngoại vi khác như kết nối Wi-Fi, Bluetooth, GPS, hoặc camera
 3. Nhóm về Kiểm thử & Phần cứng tổng quan
 • MIL (Model-in-the-Loop): Kiểm thử mô hình trong vòng lặp. Thường dùng trong ngành ô tô (Automotive), test thuật toán điều khiển ngay trên phần mềm mô phỏng (như MATLAB/Simulink) trước khi viết code thật.
 • SIL (Software-in-the-Loop): Kiểm thử phần mềm trong vòng lặp. Lấy code C được sinh ra từ mô hình mô phỏng đem đi test trên máy tính để xem logic chạy chuẩn chưa.
