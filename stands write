@@ -1,0 +1,21 @@
+1. Nhóm cốt lõi về cấu hình phần cứng (Device Tree)
+• DTS (Device Tree Source): File mã nguồn mô tả phần cứng, viết bằng ngôn ngữ dễ đọc (văn bản thuần túy), đuôi file là .dts.
+• DTB (Device Tree Blob): File nhị phân (binary) được dịch ra từ file DTS để máy tính/chip có thể đọc được tốc độ cao khi khởi động, đuôi file là .dtb.
+• DTSI (Device Tree Source Include): File mã nguồn chứa cấu hình chung (thường là của chip SoC), đóng vai trò giống như file header .h trong lập trình C để các file .dts khác @include vào cho ngắn gọn.
+• DTC (Device Tree Compiler): Trình biên dịch Device Tree. Thằng này ăn file .dts và nhè ra file .dtb.
+• DTBO (Device Tree Blob Overlay): Bản vá/bản cấu hình mở rộng dạng nhị phân. Khi bạn cắm thêm module (như màn hình, shield cảm biến) vào BeagleBone Black, bạn chỉ cần nạp file .dtbo này để cấu hình thêm mà không cần biên dịch lại file .dtb gốc của bo mạch.
+2. Nhóm về Thiết bị & Giao tiếp (Devices & Buses)
+• PCI / PCIe (Peripheral Component Interconnect / Express): Chuẩn bus giao tiếp ngoại vi tốc độ cao trên máy tính (như khe cắm card đồ họa, card mạng). Đặc trưng của nó là Self-discoverable (tự động phát hiện thiết bị).
+• I2C (Inter-Integrated Circuit): Chuẩn giao tiếp đồng bộ, nối tiếp giữa các chip với nhau (thường chỉ dùng 2 dây: SDA và SCL). Bản chất của nó là Non-self-discoverable (không tự phát hiện thiết bị).
+• SPI (Serial Peripheral Interface): Chuẩn giao tiếp nối tiếp đồng bộ tốc độ cao hơn I2C, dùng 4 dây. Cũng là chuẩn không tự phát hiện thiết bị.
+• UART (Universal Asynchronous Receiver-Transmitter): Bộ truyền nhận dữ liệu nối tiếp bất đồng bộ (chân TX/RX quen thuộc dùng để debug hoặc truyền dữ liệu khoảng cách gần).
+• GPIO (General-Purpose Input/Output): Các chân giao tiếp đa năng trên vi điều khiển/máy tính nhúng. Bạn thích cấu hình nó làm chân xuất tín hiệu (Output) hay đọc tín hiệu (Input) đều được.
+3. Nhóm về Kiểm thử & Phần cứng tổng quan
+• MIL (Model-in-the-Loop): Kiểm thử mô hình trong vòng lặp. Thường dùng trong ngành ô tô (Automotive), test thuật toán điều khiển ngay trên phần mềm mô phỏng (như MATLAB/Simulink) trước khi viết code thật.
+• SIL (Software-in-the-Loop): Kiểm thử phần mềm trong vòng lặp. Lấy code C được sinh ra từ mô hình mô phỏng đem đi test trên máy tính để xem logic chạy chuẩn chưa.
+• SoC (System on Chip): Hệ thống trên một vi mạch. Con chip xử lý trung tâm (như chip AM335x trên con BeagleBone Black của bạn) tích hợp gần như mọi thứ: CPU, GPU, bộ điều khiển RAM, các cổng ngoại vi... vào chung một tấm silicon duy nhất.
+• RAM (Random Access Memory): Bộ nhớ truy cập ngẫu nhiên (Bộ nhớ trong). Trong câu hỏi trên đề cập đến DDR3 (Double Data Rate 3) là một thế hệ RAM.
+• PMIC (Power Management Integrated Circuit): Chip quản lý nguồn điện trên bo mạch, chịu trách nhiệm phân phối và ổn định điện áp cho CPU, RAM, ngoại vi...
+4. Nhóm về Thuật ngữ Kiểm thử (Nhắc thêm ở phần giải thích phụ)
+• DUT (Device Under Test): Thiết bị đang được đem đi kiểm thử.
+• UUT (Unit Under Test): Khối/Đơn vị phần cứng đang được đem đi kiểm thử (nghĩa tương tự DUT).
