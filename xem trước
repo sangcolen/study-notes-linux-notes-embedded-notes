@@ -1,0 +1,1 @@
+kmalloc(size_needed, GFP_KERNEL)⁠ bản chất hệ thống sẽ đọc là: Cấp cho tao ⁠1024⁠ byte, cấp theo kiểu ⁠GFP_KERNEL⁠ (chờ được nếu bận).
