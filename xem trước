@@ -1,1 +1,46 @@
 kmalloc(size_needed, GFP_KERNEL)⁠ bản chất hệ thống sẽ đọc là: Cấp cho tao ⁠1024⁠ byte, cấp theo kiểu ⁠GFP_KERNEL⁠ (chờ được nếu bận).
+
+Về Dịch bit (Bitwise operators): M chỉ cần nhớ đúng 4 thói quen cài đặt thanh ghi này thôi:
+Set bit $n$ lên 1: REG |= (1 << n);
+Clear bit $n$ về 0: REG &= ~(1 << n);
+Toggle (đảo) bit $n$: REG ^= (1 << n);
+Kiểm tra bit $n$ có bằng 1 không: if (REG & (1 << n))(Gõ mấy dòng này ra một tờ giấy note, dán thẳng lên màn hình máy tính cho t).
+
+Về Con trỏ (Pointer): Trong Embedded Linux, con trỏ dùng nhiều nhất là để trỏ vào địa chỉ vùng nhớ của ngoại vi (Mapping bộ nhớ) hoặc 
+truyền địa chỉ struct. M chỉ cần hiểu: int *ptr là pointer lưu địa chỉ, còn *ptr là múc cái ruột bên trong địa chỉ đó ra. 
+
+Thử tưởng tượng m có một thanh ghi REG điều khiển tốc độ Baudrate hoặc chế độ của một chân GPIO. Thanh ghi này có 8 bit, 
+hiện tại đang có giá trị là 1011 0110.Nhiệm vụ của m: Ghi giá trị 5 (nhị phân là 101) vào cụm 3 bit từ Bit 2 đến Bit 4.
+Cách làm chuẩn kĩ sư nhúng gồm 3 bước:
+
+Bước 1: Tạo Mặt nạ (Bit Mask) để xác định "vùng quy hoạch"M cần một cái mặt nạ để bao phủ 
+lấy 3 bit (Bit 2, 3, 4).3 bit toàn số 1 nhị phân là 111 (đổi ra thập phân là số 7, hoặc ghi kiểu Hex là 0x07).
+M dịch cái cụm 111 này sang trái 2 lần để nó nhảy đúng vào vị trí từ Bit 2 đến Bit 4: 0x07 << 2 
+Kết quả nhị phân thu được là: 0001 1100.
+Đây chính là cái Bit Mask của m.
+
+Bước 2: Dùng phép AND (&) với mặt nạ đảo ngược (~Mask) để "Xóa nền"Trước khi ghi số 5 vào, m phải đảm bảo vùng Bit 2 đến Bit 4 phải sạch sẽ (bằng 0). 
+Nếu không, dữ liệu cũ dính vào sẽ làm sai lệch kết quả.
+Đảo ngược mặt nạ: ~Mask biến 0001 1100 thành 1110 0011.Thực hiện phép AND để xóa chỗ trống:
+Plaintext  1011 0110  (Thanh ghi REG gốc)
+         & 1110 0011  (Mặt nạ đảo ngược ~Mask)
+          -----------
+           1010 0010  (Kết quả: Vùng Bit 2->4 đã bị xóa sạch về 0, các bit khác giữ nguyên)
+Viết trong code: REG &= ~(0x07 << 2);
+
+Bước 3: Dịch dữ liệu mới vào đúng vị trí và OR (|) để ghi dữ liệuBây giờ m muốn ghi giá trị 5 (nhị phân là 101).
+M phải dịch số 5 này sang trái 2 lần (5 << 2) để nó xếp đúng hàng với vị trí Bit 2 thu được: 0001 0100.
+Tiến hành OR vào thanh ghi đã xóa nền ở Bước 2:
+Plaintext  1010 0010  (Thanh ghi REG đã xóa nền ở Bước 2)
+         | 0001 0100  (Giá trị số 5 đã dịch trái 2 lần: 5 << 2)
+          -----------
+           1011 0110  (Kết quả cuối cùng: Cụm giữa đã được đổi thành 101, tức là số 5)
+Viết trong code: REG |= (5 << 2);
+
+// Thường người ta sẽ define cái Mask trước
+#define COMPONENT_MASK    (0x07 << 2)
+
+// Code xử lý gom làm 1 dòng: Xóa nền xong OR giá trị mới luôn
+REG = (REG & ~COMPONENT_MASK) | (5 << 2);
+
+
