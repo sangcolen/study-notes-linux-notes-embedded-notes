@@ -1,9 +1,21 @@
 1. Nhóm cốt lõi về cấu hình phần cứng (Device Tree)
-• DTS (Device Tree Source): File mã nguồn mô tả phần cứng, viết bằng ngôn ngữ dễ đọc (văn bản thuần túy), đuôi file là .dts.
-• DTB (Device Tree Blob): File nhị phân (binary) được dịch ra từ file DTS để máy tính/chip có thể đọc được tốc độ cao khi khởi động, đuôi file là .dtb.
-• DTSI (Device Tree Source Include): File mã nguồn chứa cấu hình chung (thường là của chip SoC), đóng vai trò giống như file header .h trong lập trình C để các file .dts khác @include vào cho ngắn gọn.
-• DTC (Device Tree Compiler): Trình biên dịch Device Tree. Thằng này ăn file .dts và nhè ra file .dtb.
-• DTBO (Device Tree Blob Overlay): Bản vá/bản cấu hình mở rộng dạng nhị phân. Khi bạn cắm thêm module (như màn hình, shield cảm biến) vào BeagleBone Black, bạn chỉ cần nạp file .dtbo này để cấu hình thêm mà không cần biên dịch lại file .dtb gốc của bo mạch.
+• DTS (Device Tree Source): File mã nguồn mô tả 
+phần cứng, viết bằng ngôn ngữ dễ đọc (văn bản thuần túy), 
+đuôi file là .dts.
+• DTB (Device Tree Blob): File nhị phân (binary) 
+được dịch ra từ file DTS để máy tính/chip có thể 
+đọc được tốc độ cao khi khởi động, đuôi file là .dtb.
+• DTSI (Device Tree Source Include): File mã nguồn 
+chứa cấu hình chung (thường là của chip SoC), đóng 
+vai trò giống như file header .h trong lập trình C 
+để các file .dts khác @include vào cho ngắn gọn.
+• DTC (Device Tree Compiler): Trình biên dịch Device Tree. 
+Thằng này ăn file .dts và nhè ra file .dtb.
+• DTBO (Device Tree Blob Overlay): Bản vá/bản 
+cấu hình mở rộng dạng nhị phân. Khi bạn cắm 
+thêm module (như màn hình, shield cảm biến) 
+vào BeagleBone Black, bạn chỉ cần nạp file .dtbo này 
+để cấu hình thêm mà không cần biên dịch lại file .dtb gốc của bo mạch.
 2. Nhóm về Thiết bị & Giao tiếp (Devices & Buses)
 • PCI / PCIe (Peripheral Component Interconnect / Express): Chuẩn bus giao tiếp ngoại vi tốc độ cao trên máy tính (như khe cắm card đồ họa, card mạng). Đặc trưng của nó là Self-discoverable (tự động phát hiện thiết bị).
 • I2C (Inter-Integrated Circuit): Chuẩn giao tiếp đồng bộ, nối tiếp giữa các chip với nhau (thường chỉ dùng 2 dây: SDA và SCL). Bản chất của nó là Non-self-discoverable (không tự phát hiện thiết bị).
