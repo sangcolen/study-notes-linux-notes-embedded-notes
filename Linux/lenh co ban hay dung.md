@@ -23,14 +23,15 @@ mkdir: Tạo thư mục mới (vd: mkdir folder_name).
 touch: Tạo file trống mới (vd: touch file.txt).
 rm: Xóa tệp hoặc thư mục (rm -rf xóa thư mục và nội dung bên trong).
 cp: Sao chép tệp/thư mục (cp -r cho thư mục). cp -r * /thuMucCanCopy (-r * copy tat ca trong thu muc hien tai) khi nhieu file nang no se copy len RAM sau do bam "sync"
+nếu ko cho ghi mà chỉ đọc thì sudo mount -o remount,rw /media/sang/ROOTFS
 mv: Di chuyển hoặc đổi tên tệp/thư mục. 
 
-2. Xem và Chỉnh sửa Tệp tin
+3. Xem và Chỉnh sửa Tệp tin
 cat: Xem nội dung file.
 less / more: Xem file dài từng trang.
 nano / vi: Trình soạn thảo văn bản ngay trong terminal. 
 
-3. Quản lý Hệ thống và Quyền
+4. Quản lý Hệ thống và Quyền
 sudo: Thực hiện lệnh với quyền root (cao nhất).
 chmod: Thay đổi quyền truy cập file/thư mục (vd: chmod 755 file).
 chown: Thay đổi chủ sở hữu file/thư mục.
@@ -38,13 +39,13 @@ top / htop: Xem tài nguyên hệ thống (CPU, RAM) đang chạy.
 ps: Hiển thị danh sách các tiến trình (process) đang chạy.
 kill: Dừng một tiến trình (vd: kill -9 PID). 
 
-4. Mạng và Tìm kiếm
+5. Mạng và Tìm kiếm
 ping: Kiểm tra kết nối mạng.
 ifconfig / ip a: Xem địa chỉ IP và thông tin mạng.
 grep: Tìm kiếm văn bản trong file hoặc kết quả lệnh.
 find: Tìm kiếm tệp tin trong hệ thống. 
 
-5. Lệnh Khác
+6. Lệnh Khác
 history: Xem lại lịch sử các câu lệnh đã nhập.
 man: Xem hướng dẫn sử dụng của một lệnh (vd: man ls).
 clear: Làm sạch màn hình terminal.
