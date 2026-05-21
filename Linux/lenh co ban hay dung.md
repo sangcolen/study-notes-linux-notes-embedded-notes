@@ -22,7 +22,7 @@ pwd: Hiển thị đường dẫn tuyệt đối của thư mục đang đứng.
 mkdir: Tạo thư mục mới (vd: mkdir folder_name).
 touch: Tạo file trống mới (vd: touch file.txt).
 rm: Xóa tệp hoặc thư mục (rm -rf xóa thư mục và nội dung bên trong).
-cp: Sao chép tệp/thư mục (cp -r cho thư mục). cp -r * /thuMucCanCopy (-r * copy tat ca trong thu muc hien tai)
+cp: Sao chép tệp/thư mục (cp -r cho thư mục). cp -r * /thuMucCanCopy (-r * copy tat ca trong thu muc hien tai) khi nhieu file nang no se copy len RAM sau do bam "sync"
 mv: Di chuyển hoặc đổi tên tệp/thư mục. 
 
 2. Xem và Chỉnh sửa Tệp tin
