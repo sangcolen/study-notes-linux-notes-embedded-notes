@@ -49,3 +49,6 @@ find: Tìm kiếm tệp tin trong hệ thống.
 history: Xem lại lịch sử các câu lệnh đã nhập.
 man: Xem hướng dẫn sử dụng của một lệnh (vd: man ls).
 clear: Làm sạch màn hình terminal.
+
+giải nén file: sudo tar -xvf Name.xz -C  /media/sang/ROOTFS/
+
