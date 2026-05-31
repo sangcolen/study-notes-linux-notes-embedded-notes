@@ -1,4 +1,5 @@
 ssh-keygen -R 192.168.7.2
+ssh root@192.168.7.2
 xoa id cu neu co
 sau do dung ssh debian@192.168.7.2 (hoac root@...)
 
