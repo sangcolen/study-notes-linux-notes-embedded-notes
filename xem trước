@@ -43,4 +43,9 @@ Viết trong code: REG |= (5 << 2);
 // Code xử lý gom làm 1 dòng: Xóa nền xong OR giá trị mới luôn
 REG = (REG & ~COMPONENT_MASK) | (5 << 2);
 
-
+Chuyển mạng máy ảo sang dạng Bridged (Khuyên dùng)Cách này biến máy ảo Ubuntu thành một thiết bị độc lập trong mạng nhà bạn, có cùng dải IP với máy tính cấu hình và BeaglePlay.
+Bước 1: Trên thanh menu của VMware, vào VM > Settings > chọn Network Adapter.
+Bước 2: Tích chọn vào mục Bridged: Connected directly to the physical network.
+Bước 3: (Quan trọng) Tích thêm vào ô Replicate physical network connection state. Nhấn OK.
+Bước 4: Mở Terminal bên trong máy ảo Ubuntu, chạy lệnh để cập nhật lại IP:sudo dhclient -v
+Bước 5: Tiến hành SSH vào BeaglePlay bằng lệnh:ssh debian@beagleplay.local hoặc ssh debian@<Địa_chỉ_IP_của_BeaglePlay>
