@@ -3,12 +3,18 @@ vi /etc/resolv.conf
 namesever 8.8.8.8
 namesever 8.8.4.4
 
-Để chắc chắn mọi thứ hoạt động ngon lành, bạn chạy tuần tự các lệnh này trên máy Ubuntu (nếu lệnh nào chạy rồi thì chạy lại cũng không sao):
-
-Bật chuyển tiếp gói tin:
+Bước 1: Cho phép Ubuntu chuyển tiếp dữ liệu (IP Forwarding)
 Bash
 sudo sysctl -w net.ipv4.ip_forward=1
 
-Cấu hình NAT qua card ens33 (Lệnh vừa sửa ở trên):
+Bước 2: Cấu hình NAT (iptables) để share Internet
+Bạn cần chỉ định rõ dữ liệu từ BeagleBone đi vào Ubuntu sẽ được "đẩy" ra ngoài mạng internet bằng card mạng nào. Thường trong bài học, lệnh sẽ dạng như thế này:
 Bash
-sudo iptables -t nat -A POSTROUTING -o ens33 -j MASQUERADE
+sudo iptables -t nat -A POSTROUTING -o <tên_card_mạng_internet> -j MASQUERADE
+  Lưu ý: Hãy thay <tên_card_mạng_internet> bằng card mạng đang kết nối dải 192.168.17.0 của bạn (bạn có thể gõ ip a trên Ubuntu để xem tên chính xác của nó, thường là ens33, eth0, hoặc wlan0 nếu dùng wifi).
+
+Thầy viết --table nat  Bạn viết gọn lại là -t nat
+Thầy viết --append  Bạn viết gọn lại là -A
+Thầy viết --out-interface  Bạn viết gọn lại là -o
+Thầy viết --in-interface  Bạn viết gọn lại là -i
+sudo iptables -A FORWARD -i <tên_card_mạng> -j ACCEPT
