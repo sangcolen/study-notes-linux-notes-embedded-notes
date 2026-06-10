@@ -21,3 +21,20 @@ Thầy viết --append  Bạn viết gọn lại là -A
 Thầy viết --out-interface  Bạn viết gọn lại là -o
 Thầy viết --in-interface  Bạn viết gọn lại là -i
 sudo iptables -A FORWARD -i <tên_card_mạng> -j ACCEPT
+
+sudo ifconfig enx1cba8ca2ed6a 192.168.7.1 netmask 255.255.255.0 up
+sudo ifconfig enx1cba8ca2ed6c 192.168.6.1 netmask 255.255.255.0 up
+
+---------------------sudo nmtui-------------------------------
+1. Cấu hình cho BeaglePlay USB0:
+Chọn dòng BeaglePlay USB0 → nhấn Tab chọn <Edit...> ở bên phải → nhấn Enter.
+Tìm mục IPv4 CONFIGURATION, đổi từ <Automatic> thành <Manual>.
+Chọn <Show> ngay bên cạnh để hiện bảng cài đặt nâng cao.
+Tại dòng Addresses, điền vào: 192.168.7.1/24
+Di chuyển xuống dưới cùng chọn <OK> để lưu lại.
+
+2. Cấu hình cho BeaglePlay USB1:
+Chọn dòng BeaglePlay USB1 → nhấn Tab chọn <Edit...> → nhấn Enter.
+Đổi mục IPv4 CONFIGURATION sang <Manual> → chọn <Show>.
+Tại dòng Addresses, điền vào dải mạng số 6: 192.168.6.1/24
+Di chuyển xuống dưới cùng chọn <OK> để lưu lại.
