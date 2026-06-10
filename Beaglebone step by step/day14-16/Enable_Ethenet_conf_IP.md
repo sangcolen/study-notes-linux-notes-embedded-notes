@@ -3,11 +3,12 @@ vi /etc/resolv.conf
 namesever 8.8.8.8
 namesever 8.8.4.4
 
-kiem tra da ket noi chua 
-route add default gw 192.168.7.2/.6.2 usb0/usb1
 Bước 1: Cho phép Ubuntu chuyển tiếp dữ liệu (IP Forwarding)
 Bash
 sudo sysctl -w net.ipv4.ip_forward=1
+
+kiem tra da ket noi chua 
+route add default gw 192.168.7.2/.6.2 usb0/usb1
 
 Bước 2: Cấu hình NAT (iptables) để share Internet
 Bạn cần chỉ định rõ dữ liệu từ BeagleBone đi vào Ubuntu sẽ được "đẩy" ra ngoài mạng internet bằng card mạng nào. Thường trong bài học, lệnh sẽ dạng như thế này:
