@@ -14,3 +14,5 @@ Gõ clean (Lệnh này sẽ quét sạch toàn bộ các phân vùng ẩn Linux)
 Gõ tiếp create partition primary để tạo lại một phân vùng duy nhất.
 
 Cuối cùng gõ format fs=ntfs quick (hoặc fs=fat32) để định dạng lại là xong.
+
+
