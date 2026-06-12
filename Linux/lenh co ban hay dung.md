@@ -34,18 +34,23 @@ nano / vi: Trình soạn thảo văn bản ngay trong terminal.
 4. Quản lý Hệ thống và Quyền
 sudo: Thực hiện lệnh với quyền root (cao nhất).
 chmod: Thay đổi quyền truy cập file/thư mục (vd: chmod 755 file).
+sudo chmod 755 chương_trình
+Số 7 (Chủ sở hữu - Người tạo ra file): Có toàn quyền tối cao. Được phép Đọc (4) + Ghi/Sửa (2) + Chạy file (1).
+Số 6 trong lệnh chmod đại diện cho quyền Đọc và Ghi (Read & Write)
+Số 5 (Nhóm sở hữu - Group): Chỉ được phép Đọc (4) + Chạy file (1). Nhóm này không có quyền chỉnh sửa hoặc xóa nội dung file.
+Số 4 (Người ngoài hệ thống - Others): Chỉ được phép Đọc (4). Người ngoài không thể chỉnh sửa và cũng không thể chạy file này như một chương trình.
 chown: Thay đổi chủ sở hữu file/thư mục.
 top / htop: Xem tài nguyên hệ thống (CPU, RAM) đang chạy.
 ps: Hiển thị danh sách các tiến trình (process) đang chạy.
 kill: Dừng một tiến trình (vd: kill -9 PID). 
 
-5. Mạng và Tìm kiếm
+6. Mạng và Tìm kiếm
 ping: Kiểm tra kết nối mạng.
 ifconfig / ip a: Xem địa chỉ IP và thông tin mạng.
 grep: Tìm kiếm văn bản trong file hoặc kết quả lệnh.
 find: Tìm kiếm tệp tin trong hệ thống. 
 
-6. Lệnh Khác
+7. Lệnh Khác
 history: Xem lại lịch sử các câu lệnh đã nhập.
 man: Xem hướng dẫn sử dụng của một lệnh (vd: man ls).
 clear: Làm sạch màn hình terminal.
