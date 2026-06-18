@@ -1,0 +1,57 @@
+to load a file from fat based file system in to memory use: fatload
+to load a file from any file system: load
+example:
+fatload usb 0:1 0x82000000 uImage
+fatload mmc 0:1 0x88000000 initramfs
+load mmc 0:1 0x88000000 uImage
+interface còn có nghĩa là giao tiếp
+partition phân vùng
+destination
+mmc list
+OMAP SD/MMC: 0
+OMAP SD/MMC: 1
+-----------------------------------------------------------------------
+1. Dùng lệnh ls generic để quét file
+lệnh này để xem danh sách file ở thư mục gốc hoặc thư mục boot:
+
+Plaintext
+=> ls mmc 1:1 /
+Hoặc:
+
+Plaintext
+=> ls mmc 1:1 /boot
+Nếu lệnh này chạy được, nó sẽ show ra một đống file. Có file nào tên là zImage, vmlinuz-xxx hay uImage không nhé.
+
+2. Dùng lệnh load generic thay thế
+Nếu thấy file Kernel (ví dụ nó nằm ở /boot/vmlinuz-5.10.x-ti-rxx hoặc đại loại thế), sẽ dùng chính lệnh load để nạp:
+
+Plaintext
+=> load mmc 1:1 0x82000000 /boot/tên_file_kernel_mày_vừa_thấy
+
+1. Tại sao lúc đầu lỗi?
+Thứ nhất: Trên con eMMC này, hệ điều hành Debian mặc định đéo dùng file uImage (định dạng ảnh boot cũ của U-Boot), mà nó dùng file vmlinuz-4.19.94-ti-r42 (nhìn dòng cuối cùng ở hình image_9fe587.png kìa). File vmlinuz bản chất là một Kernel dạng nén (zImage), nên mày bắt buộc phải dùng lệnh bootz chứ đéo được dùng lệnh bootm.
+
+Thứ hai: File kernel của mày nó nằm ở đường dẫn /boot/vmlinuz-4.19.94-ti-r42 chứ đéo nằm ở thư mục gốc /.
+
+2. Gõ lệnh thực hành chuẩn chỉnh ngay lập tức cho tao:
+Bây giờ mày gõ đúng combo 3 lệnh này theo thứ tự để nạp và boot thử từ eMMC:
+
+Bước 1: Load file Kernel (vmlinuz) vào RAM
+Mày dùng lệnh load generic nạp file này vào địa chỉ RAM quen thuộc:
+
+Plaintext
+=> load mmc 1:1 0x82000000 /boot/vmlinuz-4.19.94-ti-r42
+(Chỗ này nó phải báo thành công và in ra dòng: 10095592 bytes read... thì mới ăn tiền).
+
+Bước 2: Muốn boot được Linux trên chip ARM hiện đại, mày cần nạp thêm file Device Tree (.dtb)
+Hồi nãy ở hình image_9fe587.png mày thấy có thư mục <DIR> dtbs đúng không? Cái file .dtb cho con BeagleBone Black nó nằm trong đó. Mày nạp nó vào một địa chỉ RAM khác (ví dụ 0x88000000) bằng lệnh:
+
+Plaintext
+=> load mmc 1:1 0x88000000 /boot/dtbs/4.19.94-ti-r42/am335x-boneblack.dtb
+(Nếu gõ lệnh trên mà báo lỗi không tìm thấy file, mày có thể gõ ls mmc 1:1 /boot/dtbs/4.19.94-ti-r42/ trước để check xem chính xác tên file .dtb của con Black là gì nhé).
+
+Bước 3: Kích hoạt Boot bằng lệnh bootz
+Vì đây là file vmlinuz (zImage) nên cấu trúc lệnh boot sẽ là: bootz [Địa_chỉ_Kernel] [Địa_chỉ_Initrd] [Địa_chỉ_Device_Tree]. Ở đây mình chưa cần dùng initrd tạm thời thì bỏ trống nó bằng dấu gạch ngang -:
+
+Plaintext
+=> bootz 0x82000000 - 0x88000000
