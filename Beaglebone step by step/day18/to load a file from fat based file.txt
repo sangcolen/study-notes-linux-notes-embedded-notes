@@ -10,6 +10,14 @@ destination
 mmc list
 OMAP SD/MMC: 0
 OMAP SD/MMC: 1
+👉fatload⁠ (Lệnh đặc định hệ thống tập tin - Filesystem-specific Command):
+ Đây là lệnh thế hệ cũ. Nó ép U-Boot chỉ được phép đọc dữ liệu từ phân vùng định dạng FAT (FAT12, FAT16, FAT32).
+ Nếu mày dùng ⁠fatload⁠ trên phân vùng định dạng ⁠ext4⁠ (như cái phân vùng ⁠1:1⁠ trên eMMC của mày), U-Boot sẽ báo lỗi 
+ ngay lập tức vì driver FAT không hiểu được cấu trúc dữ liệu của EXT4.
+👉load⁠ (Lệnh vạn năng - Generic Filesystem Command):
+ Đây là lệnh thế hệ mới của U-Boot. Nó tích hợp một tầng trừu tượng (Abstraction Layer) tự động quét qua các driver Filesystem có sẵn (FAT, EXT2/3/4, BTRFS, CramFS...).
+ Khi mày gõ ⁠load⁠, U-Boot tự mò mẫm xem cái phân vùng mày chỉ định (⁠1:1⁠ hay ⁠0:1⁠) đang xài định dạng gì để tự lôi driver tương ứng ra đọc.
+
 -----------------------------------------------------------------------
 1. Dùng lệnh ls generic để quét file
 lệnh này để xem danh sách file ở thư mục gốc hoặc thư mục boot:
@@ -55,3 +63,4 @@ Vì đây là file vmlinuz (zImage) nên cấu trúc lệnh boot sẽ là: bootz
 
 Plaintext
 => bootz 0x82000000 - 0x88000000
+
