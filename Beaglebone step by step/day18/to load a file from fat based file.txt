@@ -64,3 +64,13 @@ Vì đây là file vmlinuz (zImage) nên cấu trúc lệnh boot sẽ là: bootz
 Plaintext
 => bootz 0x82000000 - 0x88000000
 
+ERROR DIFFERENT🚫🚫🚫🚫
+Bên khóa học dùng ⁠bootm⁠ với file ⁠uImage⁠: Định dạng ⁠uImage⁠ có một cái Header (đoạn mã mồi) chứa metadata bọc bên ngoài Kernel. 
+Khi dùng lệnh ⁠bootm⁠, chính bản thân U-Boot sẽ đọc cái Header này trước khi nhảy vào Kernel. U-Boot phát hiện ra cấu hình file này 
+yêu cầu phải có FDT (Flattened Device Tree) hoặc ATAGS nhưng mày đéo truyền vào, nên U-Boot chủ động quăng ra câu chửi 
+rồi ra lệnh reset một cách "lịch sự".
+ Mày dùng ⁠bootz⁠ với file ⁠vmlinuz⁠: Lệnh ⁠bootz⁠ nhảy thẳng vào thực thi nhân Linux dạng nén. Hệ thống đéo có tầng kiểm tra trung gian nào của U-Boot cản lại nữa. 
+Kernel mù thông tin phần cứng \rightarrow Chết đứng \rightarrow Watchdog đập reset.
+
+
+
