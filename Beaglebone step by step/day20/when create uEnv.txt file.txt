@@ -1,0 +1,13 @@
+you should entry 'loady' into terminal and then you can press ctrl + a, press s after that choice file uEnv.txt
+
+when create uEnv.txt file , after the last line you must press enter and make sure that one empty line at the end in the file
+
+## Ready for binary (ymodem) download to 0x82000000 at 115200 bps...            
+C) packets, 4 retries                                                           
+## Total Size      = 0x00000038 = 56 Bytes  (neu file tam 27 bytes thi dia van con nam 0x82000000, truong hop 							nhieu hon chi hien dia chi cuoi)
+
+next you download from address RAM, because our environmental variable is set
+
+env import -t <memory addr> <size in bytes>
+
+env import -t 0x82000000 56 (nen truong hop nay van ghi dia chi dau)
