@@ -34,7 +34,7 @@ nano / vi: Trình soạn thảo văn bản ngay trong terminal.
 4. Quản lý Hệ thống và Quyền
 sudo: Thực hiện lệnh với quyền root (cao nhất).
 chmod: Thay đổi quyền truy cập file/thư mục (vd: chmod 755 file).
-sudo chmod 755 chương_trình
+sudo chmod 755 chương_trình (chi tiết hơn ở dưới)
 Số 7 (Chủ sở hữu - Người tạo ra file): Có toàn quyền tối cao. Được phép Đọc (4) + Ghi/Sửa (2) + Chạy file (1).
 Số 6 trong lệnh chmod đại diện cho quyền Đọc và Ghi (Read & Write)
 Số 5 (Nhóm sở hữu - Group): Chỉ được phép Đọc (4) + Chạy file (1). Nhóm này không có quyền chỉnh sửa hoặc xóa nội dung file.
@@ -57,3 +57,43 @@ clear: Làm sạch màn hình terminal.
 
 giải nén file: sudo tar -xvf Name.xz -C  /media/sang/ROOTFS/
  unxz nameFile.img.xz
+-------------------------------------------------------------------------------------------------------------------------------------------------------
+✨ 3 NHÓM QUYỀN TRÊN LINUX
+Linux chia quyền truy cập file thành 3 nhóm chính:
+Owner (u) – Người sở hữu file, thường là người tạo ra nó
+Group (g) – Nhóm người dùng được gán cho file (ví dụ: team dev, team ops)
+Others (o) – Tất cả những người còn lại trên hệ thống
+Và 3 loại quyền:
+r (read = 4) – Đọc file / liệt kê nội dung thư mục
+w (write = 2) – Ghi, sửa, xóa nội dung
+x (execute = 1) – Thực thi file hoặc truy cập vào thư mục
+VD ĐỌC OUTPUT CỦA LỆNH ls -l
+-rwxr-xr-- 1 alice devteam 4096 Jun 25 script.sh
+Giải mã từng phần:
+Ký tự đầu (-/d/l): loại file (file thường / thư mục / symlink)
+rwx : Owner có full quyền (read + write + execute)
+r-x : Group chỉ được đọc và thực thi
+r-- : Others chỉ được đọc
+⚡ CÁC TOOL PHÂN QUYỀN QUAN TRỌNG
+chmod – Thay đổi quyền truy cập:
+Symbolic: chmod u+x script.sh (thêm execute cho owner)
+Octal: chmod 755 script.sh (tương đương rwxr-xr-x)
+Recursive: chmod -R 644 /var/www/
+chown – Đổi chủ sở hữu file:
+chown alice script.sh → đổi owner thành alice
+chown alice:devteam script.sh → đổi cả owner lẫn group
+chgrp – Đổi nhóm sở hữu:
+chgrp devteam script.sh
+umask – Quyền mặc định khi tạo file mới:
+umask 022 → file mới tạo ra sẽ có quyền 644, thư mục có 755
+💡 TẠI SAO QUAN TRỌNG VỚI DEV & SYSADMIN?
+Sai phân quyền là nguyên nhân phổ biến của nhiều sự cố thực tế:
+Web server lỗi 403 Forbidden → thường do file thiếu quyền r hoặc thư mục thiếu x
+Script không chạy được → thiếu quyền x
+Lỗ hổng bảo mật nghiêm trọng → file config bị để 777 (mọi người đều ghi được!)
+Quy tắc vàng: Principle of Least Privilege – chỉ cấp quyền tối thiểu cần thiết.
+Một số giá trị octal phổ biến cần nhớ:
+755 → Thư mục public, script có thể chạy
+644 → File văn bản, config thông thường
+600 → File nhạy cảm (SSH key, .env)
+700 → Script chỉ owner mới chạy được
