@@ -1,0 +1,7 @@
+#mypcip=setenv serverip 192.168.1.2
+ipaddr=192.168.27.1
+#load SD
+#bootargs=console=ttyO0,115200n8 root=/dev/mmcblk0p3 rw rootwait watchdog.watchdog_thresh=0 omap_wdt.nowayout=1
+bootargs=console=ttyS0,115200n8 root=/dev/mmcblk1p1 rw
+#bootcmd=echo \"**************Booting from memory**************\";load mmc 0:3 0x82000000 /boot/vmlinuz-6.18.32-bone35;load mmc 0:3 0x88000000 /boot/dtbs/6.18.32-bone35/am335x-boneblack.dtb;bootz 0x82000000 - 0x88000000
+bootcmd=echo \"**************Booting from memory**************\";load mmc 1:1 0x82000000 /boot/vmlinuz-4.19.94-ti-r42;load mmc 1:1 0x90000000 /boot/dtbs/4.19.94-ti-r42/am335x-boneblack.dtb;bootz 0x82000000 - 0x90000000S
