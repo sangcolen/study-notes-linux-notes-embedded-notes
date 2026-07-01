@@ -8,7 +8,9 @@ Bash
 sudo sysctl -w net.ipv4.ip_forward=1
 
 kiem tra da ket noi chua 
-route add default gw 192.168.7.2/.6.2 usb0/usb1
+Tóm lại cho dễ nhớ: Lệnh cấu hình nghĩa là: Đi qua cổng mạng mạng mang tên enxf045da7c72ea (của Ubuntu) để tới đích là IP 192.168.7.2 (của BeagleBone).
+route add default gw 192.168.7.2/.6.2 usb0/usb1 nho 
+con bbb thi xem ten ben bbb thường là usb0/1
 
 Bước 2: Cấu hình NAT (iptables) để share Internet
 Bạn cần chỉ định rõ dữ liệu từ BeagleBone đi vào Ubuntu sẽ được "đẩy" ra ngoài mạng internet bằng card mạng nào. Thường trong bài học, lệnh sẽ dạng như thế này:
@@ -25,7 +27,7 @@ sudo iptables -A FORWARD -i <tên_card_mạng> -j ACCEPT
 sudo ifconfig enx1cba8ca2ed6a 192.168.7.1 netmask 255.255.255.0 up
 sudo ifconfig enx1cba8ca2ed6c 192.168.6.1 netmask 255.255.255.0 up
 
----------------------sudo nmtui-------------------------------
+---------------------sudo nmtui------------------------------- ben ubuntu
 1. Cấu hình cho BeaglePlay USB0:
 Chọn dòng BeaglePlay USB0 → nhấn Tab chọn <Edit...> ở bên phải → nhấn Enter.
 Tìm mục IPv4 CONFIGURATION, đổi từ <Automatic> thành <Manual>.
@@ -38,3 +40,7 @@ Chọn dòng BeaglePlay USB1 → nhấn Tab chọn <Edit...> → nhấn Enter.
 Đổi mục IPv4 CONFIGURATION sang <Manual> → chọn <Show>.
 Tại dòng Addresses, điền vào dải mạng số 6: 192.168.6.1/24
 Di chuyển xuống dưới cùng chọn <OK> để lưu lại.
+-------------------------------------------------------------
+sudo systemctl restart NetworkManager
+xoa may cái route add
+sudo ip route flush cache
