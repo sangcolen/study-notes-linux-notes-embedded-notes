@@ -8,13 +8,10 @@ Bash
 sudo sysctl -w net.ipv4.ip_forward=1
 
 kiem tra da ket noi chua 
-Tóm lại cho dễ nhớ: Lệnh cấu hình nghĩa là: Đi qua cổng mạng mạng mang tên enxf045da7c72ea (của Ubuntu) để tới đích là IP 192.168.7.2 (của BeagleBone).
 route add default gw 192.168.7.2/.6.2 usb0/usb1 nho 
-con bbb thi xem ten ben bbb thường là usb0/1
-xoa
-sudo ip route del default via 192.168.6.2
 
-Bước 2: Cấu hình NAT (iptables) để share Internet
+
+Bước 2: Cấu hình NAT (iptables) để share Internet ubuntu
 Bạn cần chỉ định rõ dữ liệu từ BeagleBone đi vào Ubuntu sẽ được "đẩy" ra ngoài mạng internet bằng card mạng nào. Thường trong bài học, lệnh sẽ dạng như thế này:
 Bash
 sudo iptables -t nat -A POSTROUTING -o <tên_card_mạng_internet> -j MASQUERADE
