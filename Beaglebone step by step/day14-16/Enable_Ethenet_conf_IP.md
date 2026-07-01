@@ -1,7 +1,7 @@
 neu chua co file cau hinh tren bbb, xong ping 8.8.8.8 de kiem tra
 vi /etc/resolv.conf
-namesever 8.8.8.8
-namesever 8.8.4.4
+nameserver 8.8.8.8
+nameserver 8.8.4.4
 
 Bước 1: Cho phép Ubuntu chuyển tiếp dữ liệu (IP Forwarding)
 Bash
