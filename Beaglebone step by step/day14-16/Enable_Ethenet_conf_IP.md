@@ -26,6 +26,8 @@ sudo iptables -A FORWARD -i <tên_card_mạng> -j ACCEPT
 sudo ifconfig enx1cba8ca2ed6a 192.168.7.1 netmask 255.255.255.0 up
 sudo ifconfig enx1cba8ca2ed6c 192.168.6.1 netmask 255.255.255.0 up
 
+ping ww.google.com
+
 ---------------------sudo nmtui------------------------------- ben ubuntu
 1. Cấu hình cho BeaglePlay USB0:
 Chọn dòng BeaglePlay USB0 → nhấn Tab chọn <Edit...> ở bên phải → nhấn Enter.
