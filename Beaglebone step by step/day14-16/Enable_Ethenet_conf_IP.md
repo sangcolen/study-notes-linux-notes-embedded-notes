@@ -1,4 +1,4 @@
-neu chua co file cau hinh
+neu chua co file cau hinh tren bbb, xong ping 8.8.8.8 de kiem tra
 vi /etc/resolv.conf
 namesever 8.8.8.8
 namesever 8.8.4.4
