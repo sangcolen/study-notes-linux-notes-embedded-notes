@@ -21,6 +21,7 @@ Thầy viết --table nat  Bạn viết gọn lại là -t nat
 Thầy viết --append  Bạn viết gọn lại là -A
 Thầy viết --out-interface  Bạn viết gọn lại là -o
 Thầy viết --in-interface  Bạn viết gọn lại là -i
+
 sudo iptables -A FORWARD -i <tên_card_mạng> -j ACCEPT
 
 sudo ifconfig enx1cba8ca2ed6a 192.168.7.1 netmask 255.255.255.0 up
