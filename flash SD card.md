@@ -1,5 +1,5 @@
 Dùng Diskpart có sẵn trên Windows (Không cần cài app)
-Nếu lười tải app, m chơi thẳng bằng dòng lệnh Windows cho chất kĩ sư:
+dòng lệnh Windows:
 
 Bấm nút Windows, gõ cmd, chuột phải chọn Run as Administrator.
 
