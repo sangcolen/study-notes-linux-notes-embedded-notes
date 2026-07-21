@@ -5,13 +5,13 @@ vmstat: Báo cáo tóm tắt về bộ nhớ, tiến trình và hoạt động c
 
 2. Kiểm tra thông số phần cứng (Cấu hình)
 Nếu bạn muốn biết tổng dung lượng RAM hay loại CPU của máy: 
-
 free -h: Kiểm tra nhanh dung lượng RAM tổng, đã dùng và còn trống dưới định dạng dễ đọc (GB, MB).
 lscpu: Hiển thị chi tiết thông tin về CPU (tên chip, số nhân, số luồng, tốc độ xung nhịp).
 cat /proc/meminfo: Xem chi tiết tất cả các thông số chuyên sâu về bộ nhớ hệ thống.
-cat /proc/cpuinfo: Xem thông tin chi tiết của từng nhân CPU. 
+cat /proc/cpuinfo: Xem thông tin chi tiết của từng nhân CPU.
+kiem tra dung luong o cung df -h
 
-3. Các lệnh bổ trợ khác
+4. Các lệnh bổ trợ khác
 nproc: Xem nhanh số lượng nhân (core) xử lý hiện có.
 iostat: Theo dõi tải của CPU và hiệu suất xuất/nhập dữ liệu của ổ đĩa.
 
