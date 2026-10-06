@@ -57,6 +57,17 @@ clear: Làm sạch màn hình terminal.
 
 giải nén file: sudo tar -xvf Name.xz -C  /media/sang/ROOTFS/
  unxz nameFile.img.xz
+
+ tar -xjvf ten_file.tar.bz2 -C /duong/dan/den/thu/muc/
+ neu giai nen tai cho thi bo tu -C den cuoi
+• -x: Thực hiện xả nén (Extract).
+• -j: Chỉ định giải nén định dạng bzip2 (bz2).
+• -v: Hiển thị danh sách các file đang được giải nén ra màn hình (Verbose).
+• -f: Chỉ định tên file lưu trữ cần thao tác (File).
+
+tar -tjvf ten_file.tar.bz2
+chi xem khong giai nen
+• -t: dùng để liệt kê danh sách.
 -------------------------------------------------------------------------------------------------------------------------------------------------------
 ✨ 3 NHÓM QUYỀN TRÊN LINUX
 Linux chia quyền truy cập file thành 3 nhóm chính:
